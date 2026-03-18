@@ -1,0 +1,7 @@
+SECRET_KEY = 'django-insecure-xi(9nc$5lfmtv)f)0ksoj)3oz%zwh#!sq&9hwa-5xbshe=%l@y'
+
+DB_NAME=petshop
+DB_USER=postgres
+DB_PASSWORD=12345
+DB_HOST=localhost
+DB_PORT=5432
