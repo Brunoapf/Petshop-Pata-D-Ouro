@@ -39,7 +39,7 @@ class Agendamento(models.Model):
     STATUS_CHOICES = [
         ("PENDENTE", "Pendente"),
         ("CONFIRMADO", "Confirmado"),
-        ("CANCELADO", "Cancelado"),
+        ("CANCELADO",  "Cancelado"),
     ]
     
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
