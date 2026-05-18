@@ -14,11 +14,17 @@
 
     <main class="container">
 
-        <h1 class="title">Login</h1>
-
+        
+        <div class="img">
+            <img class="logo" src="{% static 'img/logo.png' %}" alt="Imagem de Login">
+        </div>
+        
+        <div class="login">
         <form method="post" class="form-login">
-
+            
             {% csrf_token %}
+            
+            <h1 class="title">Login</h1>
 
             <div class="form-group">
                 <label for="id_username">Usuário</label>
@@ -31,10 +37,11 @@
             </div>
 
             <button type="submit" class="btn-login">
-                Entrar
+                Autenticar
             </button>
 
         </form>
+        </div>
 
     </main>
 
