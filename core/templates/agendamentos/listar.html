@@ -1,0 +1,28 @@
+<h1>Lista de Agendamentos</h1>
+
+<a href="{% url 'criar_agendamento' %}">
+    Novo Agendamento
+</a>
+
+<hr>
+
+{% for agendamento in agendamentos %}
+
+    <p>
+        {{ agendamento.pet }} -
+        {{ agendamento.servico }} -
+        {{ agendamento.data }} -
+        {{ agendamento.horario }}
+    </p>
+
+    <a href="{% url 'editar_agendamento' agendamento.id %}">
+        Editar
+    </a>
+
+    <a href="{% url 'deletar_agendamento' agendamento.id %}">
+        Deletar
+    </a>
+
+    <hr>
+
+{% endfor %}
