@@ -1,0 +1,25 @@
+<h1>Lista de Serviços</h1>
+
+<a href="{% url 'criar_servico' %}">
+    Novo Serviço
+</a>
+
+<hr>
+
+{% for servico in servicos %}
+
+    <p>
+        {{ servico.nome }} - R$ {{ servico.preco }}
+    </p>
+
+    <a href="{% url 'editar_servico' servico.id %}">
+        Editar
+    </a>
+
+    <a href="{% url 'deletar_servico' servico.id %}">
+        Deletar
+    </a>
+
+    <hr>
+
+{% endfor %}

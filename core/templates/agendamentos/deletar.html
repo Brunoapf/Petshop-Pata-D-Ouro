@@ -1,0 +1,19 @@
+<h1>Deletar Agendamento</h1>
+
+<p>Tem certeza que deseja deletar o agendamento abaixo?</p>
+
+<p>
+    {{ agendamento.pet }} - 
+    {{ agendamento.servico }} - 
+    {{ agendamento.data }} - 
+    {{ agendamento.horario }}
+</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>
+
+<a href="{% url 'listar_agendamentos' %}">
+    Cancelar
+</a>
