@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Pata D'Ouro</title>
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        
+        <div class="img">
+            <img class="logo" src="{% static 'img/logo.png' %}" alt="Imagem de Login">
+        </div>
+        
+        <div class="login">
+        <form method="post" class="form-login">
+            
+            {% csrf_token %}
+            
+            <h1 class="title">Login</h1>
+
+            <div class="form-group">
+                <label for="id_username">Usuário</label>
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_password">Senha</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="btn-login">
+                Autenticar
+            </button>
+
+        </form>
+        </div>
+
+    </main>
+
+</body>
+</html>

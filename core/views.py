@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Pet, Servico, Agendamento
 from .forms import PetForm, ServicoForm, AgendamentoForm
 
+# @login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
 
 def listar_pets(request):
 
