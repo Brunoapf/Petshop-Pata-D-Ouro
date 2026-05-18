@@ -1,0 +1,11 @@
+<h1>Deseja deletar {{ servico.nome }}?</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <button type="submit">
+        Confirmar Exclusão
+    </button>
+
+</form>
