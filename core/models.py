@@ -36,6 +36,12 @@ class Servico(models.Model):
 
 
 class Agendamento(models.Model):
+    STATUS_CHOICES = [
+        ("PENDENTE", "Pendente"),
+        ("CONFIRMADO", "Confirmado"),
+        ("CANCELADO", "Cancelado"),
+    ]
+    
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     servico = models.ForeignKey(Servico, on_delete=models.CASCADE)
@@ -43,7 +49,10 @@ class Agendamento(models.Model):
     data = models.DateField()
     horario = models.TimeField()
 
-    status = models.CharField(max_length=30)
+    status = models.CharField(
+        max_length=20,
+        choices = STATUS_CHOICES,
+        default= "PENDENTE")
 
-    def __str__(self):
+    def _str_(self):
         return f"{self.pet} - {self.data}"
