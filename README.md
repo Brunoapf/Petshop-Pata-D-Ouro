@@ -109,7 +109,73 @@ A proposta do projeto é otimizar o fluxo de atendimento e melhorar a organizaç
 ---
 
 # 🏗️ Estrutura do Projeto
+# 🏗️ Estrutura do Projeto
 
+```bash
+PROJETO PATADOURO/
+│
+├── core/
+│   │
+│   ├── migrations/
+│   │
+│   ├── templates/
+│   │   ├── agendamentos/
+│   │   │   ├── deletar.html
+│   │   │   ├── form.html
+│   │   │   └── listar.html
+│   │   │
+│   │   ├── pets/
+│   │   ├── servicos/
+│   │   └── base.html
+│   │
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+│
+├── patadouro/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── templates/
+│
+├── venv/
+│
+├── .gitignore
+├── db.sqlite3
+├── manage.py
+├── README.md
+└── requirements.txt
+```
+
+---
+
+## 📂 Organização das Pastas
+
+| Pasta/Arquivo | Função |
+|---|---|
+| `core/` | Aplicação principal do sistema |
+| `migrations/` | Controle das migrações do banco de dados |
+| `templates/` | Arquivos HTML utilizados nas páginas |
+| `agendamentos/` | Templates relacionados aos agendamentos |
+| `pets/` | Templates relacionados ao gerenciamento de pets |
+| `servicos/` | Templates relacionados aos serviços |
+| `admin.py` | Configuração do painel administrativo |
+| `forms.py` | Formulários Django utilizados no sistema |
+| `models.py` | Modelos e estrutura do banco de dados |
+| `views.py` | Regras de negócio e controle das páginas |
+| `urls.py` | Rotas da aplicação |
+| `settings.py` | Configurações principais do Django |
+| `manage.py` | Arquivo principal de gerenciamento do projeto |
+| `requirements.txt` | Dependências utilizadas no projeto |
+| `db.sqlite3` | Banco de dados SQLite utilizado no desenvolvimento |
 
 
 ---
