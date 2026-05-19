@@ -77,7 +77,7 @@ DATABASES ={  'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'patadouro',
         'USER': 'postgres',
-        'PASSWORD': '123',
+        'PASSWORD': '12345678',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -117,3 +117,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "core" / "static",
+]
