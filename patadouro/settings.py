@@ -77,7 +77,7 @@ DATABASES ={  'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'patadouro',
         'USER': 'postgres',
-        'PASSWORD': '12345678',
+        'PASSWORD': '165352',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -122,5 +122,5 @@ STATICFILES_DIRS = [
     BASE_DIR / 'core' / 'static',
 ]
 
-LOGIN_REDIRECT_URL = '/home/'
+LOGIN_REDIRECT_URL = '/admin/'
 LOGOUT_REDIRECT_URL = '/'
