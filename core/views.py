@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import Pet, Servico, Agendamento
+from .models import Pet, Servico, Agendamento, Cliente
 from .forms import PetForm, ServicoForm, AgendamentoForm
 
 # @login_required
@@ -56,6 +56,7 @@ def deletar_pet(request, id):
         'pet': pet
     })
 
+
 def listar_servicos(request):
 
     servicos = Servico.objects.all()
@@ -105,36 +106,47 @@ def deletar_servico(request, id):
         'servico': servico
     })
 
+
 def listar_agendamentos(request):
 
-    agendamentos = Agendamento.objects.all()
+    if request.method == 'POST':
 
-    return render(request, 'agendamentos/listar.html', {
-        'agendamentos': agendamentos
-    })
+        cliente_id = request.POST.get('cliente')
+        pet_id = request.POST.get('pet')
+        servico_id = request.POST.get('servico')
 
+        data_agendamento = request.POST.get('data_agendamento')
+        horario_agendamento = request.POST.get('horario_agendamento')
 
-def criar_agendamento(request):
+        cliente = Cliente.objects.get(id=cliente_id)
+        pet = Pet.objects.get(id=pet_id)
+        servico = Servico.objects.get(id=servico_id)
 
-    form = AgendamentoForm(request.POST or None)
+        Agendamento.objects.create(
+            cliente=cliente,
+            pet=pet,
+            servico=servico,
+            data=data_agendamento,
+            horario=horario_agendamento
+        )
 
-    if form.is_valid():
-        form.save()
         return redirect('listar_agendamentos')
 
-    return render(request, 'agendamentos/form.html', {
-        'form': form
-    })
-
-
-def listar_agendamentos(request):
     agendamentos = Agendamento.objects.all()
+    clientes = Cliente.objects.all()
+    pets = Pet.objects.all()
+    servicos = Servico.objects.all()
+
     return render(request, 'agendamentos/listar.html', {
-        'agendamentos': agendamentos
+        'agendamentos': agendamentos,
+        'clientes': clientes,
+        'pets': pets,
+        'servicos': servicos
     })
 
 
 def criar_agendamento(request):
+
     form = AgendamentoForm(request.POST or None)
 
     if form.is_valid():
@@ -147,6 +159,7 @@ def criar_agendamento(request):
 
 
 def editar_agendamento(request, id):
+
     agendamento = get_object_or_404(Agendamento, id=id)
 
     form = AgendamentoForm(request.POST or None, instance=agendamento)
@@ -161,6 +174,7 @@ def editar_agendamento(request, id):
 
 
 def deletar_agendamento(request, id):
+
     agendamento = get_object_or_404(Agendamento, id=id)
 
     if request.method == 'POST':

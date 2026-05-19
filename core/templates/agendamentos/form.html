@@ -1,15 +1,47 @@
-<h1>Formulário de Agendamento</h1>
+{% load static %}
 
-<form method="POST">
-    {% csrf_token %}
+<!DOCTYPE html>
+<html lang="pt-br">
 
-    {{ form.as_p }}
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Agendamento</title>
 
-    <button type="submit">
-        Salvar
-    </button>
-</form>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
 
-<a href="{% url 'listar_agendamentos' %}">
-    Voltar
-</a>
+<body>
+
+    <div class="pagina-centralizada">
+
+        <div class="card">
+
+            <h1>Formulário de Agendamento</h1>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <div class="botoes">
+
+                    <button type="submit" class="botao">
+                        Salvar
+                    </button>
+
+                    <a href="{% url 'listar_agendamentos' %}" class="botao-cancelar">
+                        Voltar
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
