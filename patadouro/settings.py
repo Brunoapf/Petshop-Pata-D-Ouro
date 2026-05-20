@@ -73,15 +73,18 @@ WSGI_APPLICATION = 'patadouro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES ={  'default': {
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'patadouro',
         'USER': 'postgres',
-        'PASSWORD': '12345678',
+        'PASSWORD': '165352',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
@@ -122,6 +125,16 @@ STATICFILES_DIRS = [
     BASE_DIR / 'core' / 'static',
 ]
 
+<<<<<<< HEAD
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/home/'
+=======
+LOGIN_REDIRECT_URL = '/admin/'
+>>>>>>> main
 LOGOUT_REDIRECT_URL = '/'
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

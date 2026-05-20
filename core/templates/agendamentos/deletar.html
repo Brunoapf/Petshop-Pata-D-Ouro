@@ -1,19 +1,76 @@
-<h1>Deletar Agendamento</h1>
+{% load static %}
 
-<p>Tem certeza que deseja deletar o agendamento abaixo?</p>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<p>
-    {{ agendamento.pet }} - 
-    {{ agendamento.servico }} - 
-    {{ agendamento.data }} - 
-    {{ agendamento.horario }}
-</p>
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Agendamento</title>
 
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Confirmar</button>
-</form>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
 
-<a href="{% url 'listar_agendamentos' %}">
-    Cancelar
-</a>
+<body>
+
+    <div class="pagina-centralizada">
+
+        <div class="card">
+
+            <h1>Deletar Agendamento</h1>
+
+            <p>
+                Tem certeza que deseja deletar o agendamento abaixo?
+            </p>
+
+            <br>
+
+            <p>
+                <strong>Cliente:</strong>
+                {{ agendamento.cliente }}
+            </p>
+
+            <p>
+                <strong>Pet:</strong>
+                {{ agendamento.pet }}
+            </p>
+
+            <p>
+                <strong>Serviço:</strong>
+                {{ agendamento.servico }}
+            </p>
+
+            <p>
+                <strong>Data:</strong>
+                {{ agendamento.data }}
+            </p>
+
+            <p>
+                <strong>Horário:</strong>
+                {{ agendamento.horario }}
+            </p>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="botoes">
+
+                    <button type="submit" class="botao">
+                        Confirmar
+                    </button>
+
+                    <a href="{% url 'listar_agendamentos' %}" class="botao-cancelar">
+                        Cancelar
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
