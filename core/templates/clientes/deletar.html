@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Excluir Cliente
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/clientes.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="delete-container">
+
+    <i class="fa-solid fa-circle-exclamation warning-icon"></i>
+
+    <h1>Excluir Cliente</h1>
+
+    <p>
+        Deseja realmente excluir
+        <strong>{{ cliente.nome }}</strong>?
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button type="submit" class="btn-delete-confirm">
+            Confirmar Exclusão
+        </button>
+
+        <a href="{% url 'listar_clientes' %}" class="btn-cancel">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

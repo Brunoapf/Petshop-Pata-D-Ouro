@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        Pata D'Ouro
+        {% endblock %}
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Ícones -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <!-- HEADER -->
+        <div class="sidebar-header">
+
+            <div class="logo-box">
+                <img src="{% static 'img/logo.png' %}" alt="Logo">
+            </div>
+
+            <div class="system-info">
+                <h2>Pata D'Ouro</h2>
+                <span>Painel Administrativo</span>
+            </div>
+
+        </div>
+
+        <!-- MENU -->
+        <nav class="sidebar-menu">
+
+            <a href="/home/"
+                class="menu-item {% if request.path == '/home/' %}active{% endif %}">
+
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+
+            </a>
+
+            <a href="/clientes/"
+   class="menu-item {% if request.path == '/clientes/' %}active{% endif %}">
+
+    <i class="fa-solid fa-user-group"></i>
+    <span>Clientes</span>
+
+</a>
+
+            <a href="/pets/"
+                class="menu-item {% if request.path == '/pets/' %}active{% endif %}">
+
+                <i class="fa-solid fa-paw"></i>
+                <span>Pets</span>
+
+            </a>
+
+            <a href="/servicos/"
+                class="menu-item {% if request.path == '/servicos/' %}active{% endif %}">
+
+                <i class="fa-solid fa-scissors"></i>
+                <span>Serviços</span>
+
+            </a>
+
+            <a href="/agendamentos/"
+                class="menu-item {% if request.path == '/agendamentos/' %}active{% endif %}">
+
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Agendamentos</span>
+
+            </a>
+
+        </nav>
+
+        <!-- FOOTER -->
+        <div class="sidebar-footer">
+
+    <div class="user-box">
+
+        <div class="user-avatar">
+            <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div class="user-details">
+            <p>Administrador</p>
+
+            <span class="status">
+                <i class="fa-solid fa-circle"></i>
+                Online
+            </span>
+        </div>
+
+        <form action="{% url 'logout' %}" method="POST">
+
+    {% csrf_token %}
+
+    <button type="submit" class="logout-btn">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+    </button>
+
+</form>
+
+    </div>
+
+</div>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <main class="content">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</body>
+
+</html>

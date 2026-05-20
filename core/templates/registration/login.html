@@ -2,54 +2,75 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Login - Pata D'Ouro</title>
 
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
     <main class="container">
 
+        <!-- LADO DA IMAGEM -->
         <div class="img-container">
-            <img class="logo" src="{% static 'img/logo.png' %}" alt="Logo Pata D'Ouro">
+
+            <img
+                class="logo"
+                src="{% static 'img/logo.png' %}"
+                alt="Logo Pata D'Ouro">
+
         </div>
 
+        <!-- LOGIN -->
         <div class="login">
 
             <div class="texts">
-                <h1 class="title">Bem-vindo!</h1>
-                <p>Faça login para continuar</p>
+
+                <h1 class="title">
+                    Bem-vindo!
+                </h1>
+
+                <p>
+                    Faça login para acessar o sistema
+                </p>
+
             </div>
 
-            <form method="post" class="form-login">
+            <form method="POST" class="form-login">
 
                 {% csrf_token %}
 
                 <div class="form-group">
-                    <label class="title-form" for="id_username">
+
+                    <label for="id_username">
                         Usuário
                     </label>
 
                     {{ form.username }}
+
                 </div>
 
                 <div class="form-group">
-                    <label class="title-form" for="id_password">
+
+                    <label for="id_password">
                         Senha
                     </label>
 
                     {{ form.password }}
-                </div>
 
-                {% if form.errors %}
-                    <p class="error-message">
-                        Usuário ou senha inválidos.
-                    </p>
-                {% endif %}
+                </div>
 
                 <button type="submit" class="btn-login">
                     Entrar
@@ -62,4 +83,5 @@
     </main>
 
 </body>
+
 </html>

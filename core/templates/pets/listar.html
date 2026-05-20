@@ -1,25 +1,105 @@
-<h1>Lista de Pets</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-<a href="{% url 'criar_pet' %}">
-    Novo Pet
-</a>
+{% block title %}Pets{% endblock %}
 
-<hr>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pets.css' %}">
+{% endblock %}
 
-{% for pet in pets %}
+{% block content %}
 
-    <p>
-        {{ pet.nome }} - {{ pet.especie }}
-    </p>
+<div class="page-header">
 
-    <a href="{% url 'editar_pet' pet.id %}">
-        Editar
+    <div>
+        <h1 class="page-title">Pets</h1>
+        <p class="page-subtitle">
+            Gerencie todos os pets cadastrados no sistema
+        </p>
+    </div>
+
+    <a href="{% url 'criar_pet' %}" class="btn-primary">
+        <i class="fa-solid fa-plus"></i>
+        Novo Pet
     </a>
 
-    <a href="{% url 'deletar_pet' pet.id %}">
-        Deletar
-    </a>
+</div>
 
-    <hr>
+<div class="pets-grid">
 
-{% endfor %}
+    {% for pet in pets %}
+
+    <div class="pet-card">
+
+        <div class="pet-card-top">
+
+            <div class="pet-avatar">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+
+            <div class="pet-info">
+                <h2>{{ pet.nome }}</h2>
+                <span>{{ pet.especie }}</span>
+            </div>
+
+        </div>
+
+        <div class="pet-details">
+
+            <div class="detail-item">
+                <span class="detail-label">Raça</span>
+                <p>{{ pet.raca }}</p>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Idade</span>
+                <p>{{ pet.idade }} anos</p>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Porte</span>
+                <p>{{ pet.porte }}</p>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Tutor</span>
+                <p>{{ pet.cliente.nome }}</p>
+            </div>
+
+        </div>
+
+        <div class="card-actions">
+
+            <a href="{% url 'editar_pet' pet.id %}" class="btn-edit">
+                <i class="fa-solid fa-pen"></i>
+                Editar
+            </a>
+
+            <a href="{% url 'deletar_pet' pet.id %}" class="btn-delete">
+                <i class="fa-solid fa-trash"></i>
+                Excluir
+            </a>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="empty-state">
+
+        <i class="fa-solid fa-paw"></i>
+
+        <h2>Nenhum pet cadastrado</h2>
+
+        <p>
+            Clique em "Novo Pet" para começar.
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

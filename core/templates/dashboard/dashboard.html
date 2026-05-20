@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <!-- HEADER -->
+
+    <div class="dashboard-header">
+
+        <div>
+            <h1>Dashboard</h1>
+            <p>Visão geral do sistema Pata D'Ouro</p>
+        </div>
+
+    </div>
+
+    <!-- CARDS -->
+
+    <div class="cards">
+
+        <div class="card">
+            <i class="fa-solid fa-paw"></i>
+
+            <div>
+                <h2>152</h2>
+                <span>Pets cadastrados</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-calendar-check"></i>
+
+            <div>
+                <h2>28</h2>
+                <span>Agendamentos hoje</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-scissors"></i>
+
+            <div>
+                <h2>14</h2>
+                <span>Serviços ativos</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-users"></i>
+
+            <div>
+                <h2>73</h2>
+                <span>Clientes ativos</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTEÚDO -->
+
+    <div class="dashboard-grid">
+
+        <!-- CALENDÁRIO -->
+
+        <div class="calendar-section">
+
+            <div class="section-header">
+                <h2>Agenda da Semana</h2>
+            </div>
+
+            <div class="calendar">
+
+                <div class="calendar-day active">
+                    <span>SEG</span>
+                    <h3>20</h3>
+                </div>
+
+                <div class="calendar-day">
+                    <span>TER</span>
+                    <h3>21</h3>
+                </div>
+
+                <div class="calendar-day">
+                    <span>QUA</span>
+                    <h3>22</h3>
+                </div>
+
+                <div class="calendar-day">
+                    <span>QUI</span>
+                    <h3>23</h3>
+                </div>
+
+                <div class="calendar-day">
+                    <span>SEX</span>
+                    <h3>24</h3>
+                </div>
+
+            </div>
+
+            <!-- AGENDAMENTOS -->
+
+            <div class="appointments">
+
+                <div class="appointment-card">
+                    <div>
+                        <h3>Banho - Thor</h3>
+                        <p>09:00 • João Silva</p>
+                    </div>
+
+                    <span class="status done">
+                        Confirmado
+                    </span>
+                </div>
+
+                <div class="appointment-card">
+                    <div>
+                        <h3>Tosa - Mel</h3>
+                        <p>11:30 • Maria Clara</p>
+                    </div>
+
+                    <span class="status pending">
+                        Pendente
+                    </span>
+                </div>
+
+                <div class="appointment-card">
+                    <div>
+                        <h3>Consulta - Bob</h3>
+                        <p>14:00 • Carlos Henrique</p>
+                    </div>
+
+                    <span class="status done">
+                        Confirmado
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ATIVIDADES -->
+
+        <div class="activity-section">
+
+            <div class="section-header">
+                <h2>Atividades Recentes</h2>
+            </div>
+
+            <div class="activity-list">
+
+                <div class="activity-item">
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    <div>
+                        <h4>Agendamento confirmado</h4>
+                        <p>Há 10 minutos</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <i class="fa-solid fa-paw"></i>
+
+                    <div>
+                        <h4>Novo pet cadastrado</h4>
+                        <p>Há 30 minutos</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <i class="fa-solid fa-scissors"></i>
+
+                    <div>
+                        <h4>Serviço atualizado</h4>
+                        <p>Há 1 hora</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
