@@ -1,13 +1,68 @@
-<h1>Formulário do Serviço</h1>
+{% extends 'base.html' %}
 
-<form method="POST">
+{% load static %}
 
-    {% csrf_token %}
+{% block title %}
+Serviço
+{% endblock %}
 
-    {{ form.as_p }}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/servicos.css' %}">
+{% endblock %}
 
-    <button type="submit">
-        Salvar
-    </button>
+{% block content %}
 
-</form>
+<div class="pagina-centralizada">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h1>Formulário de Serviço</h1>
+
+            <p>
+                Preencha as informações do serviço
+            </p>
+
+        </div>
+
+        <form method="POST" class="formulario">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+
+                <label>Nome do Serviço</label>
+
+                {{ form.nome }}
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Preço</label>
+
+                {{ form.preco }}
+
+            </div>
+
+            <div class="botoes">
+
+                <button type="submit" class="botao">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Salvar
+                </button>
+
+                <a href="{% url 'listar_servicos' %}" class="botao-cancelar">
+                    Voltar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

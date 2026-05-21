@@ -1,25 +1,101 @@
-<h1>Lista de Serviços</h1>
+{% extends 'base.html' %}
 
-<a href="{% url 'criar_servico' %}">
-    Novo Serviço
-</a>
+{% load static %}
 
-<hr>
+{% block title %}
+Serviços
+{% endblock %}
 
-{% for servico in servicos %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/servicos.css' %}">
+{% endblock %}
 
-    <p>
-        {{ servico.nome }} - R$ {{ servico.preco }}
-    </p>
+{% block content %}
 
-    <a href="{% url 'editar_servico' servico.id %}">
-        Editar
-    </a>
+<div class="container">
 
-    <a href="{% url 'deletar_servico' servico.id %}">
-        Deletar
-    </a>
+    <div class="topo">
 
-    <hr>
+        <div>
+            <h1 class="titulo">Serviços</h1>
+            <p class="subtitulo">
+                Gerencie os serviços oferecidos pelo petshop
+            </p>
+        </div>
 
-{% endfor %}
+        <a href="{% url 'criar_servico' %}" class="btn-novo">
+            <i class="fa-solid fa-plus"></i>
+            Novo Serviço
+        </a>
+
+    </div>
+
+    <div class="tabela-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Serviço</th>
+                    <th>Preço</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for servico in servicos %}
+
+                <tr>
+
+                    <td>{{ servico.nome }}</td>
+
+                    <td>
+                        R$ {{ servico.preco }}
+                    </td>
+
+                    <td class="acoes">
+
+                        <a
+                            href="{% url 'editar_servico' servico.id %}"
+                            class="btn-editar"
+                        >
+                            <i class="fa-solid fa-pen"></i>
+                            Editar
+                        </a>
+
+                        <a
+                            href="{% url 'deletar_servico' servico.id %}"
+                            class="btn-excluir"
+                        >
+                            <i class="fa-solid fa-trash"></i>
+                            Excluir
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="3" class="vazio">
+                        Nenhum serviço cadastrado.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

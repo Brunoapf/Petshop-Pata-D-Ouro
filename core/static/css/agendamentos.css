@@ -68,27 +68,18 @@ body{
 }
 
 .botao{
-    padding:12px 20px;
-    border:none;
-    background:#c6922d;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    border-radius:5px;
-    cursor:pointer;
-
-    width:auto;
-    min-width:120px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
+    background: #112240;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .botao:hover{
-    background:#a7771f;
+    background:#1d3557;
 }
 
 /* TABELA */
@@ -209,4 +200,55 @@ table td{
 
 .botao-cancelar:hover{
     background:#b5b5b5;
+}
+
+/* AJUSTES */
+
+.content{
+    width:100%;
+    padding:30px;
+}
+
+.container{
+    width:100%;
+    margin:0;
+}
+
+.conteudo{
+    align-items:flex-start;
+}
+
+.formulario,
+.tabela{
+    height:fit-content;
+}
+
+.formulario{
+    min-width:320px;
+}
+
+.botao{
+    margin-top:20px;
+}
+
+.acoes{
+    align-items:center;
+}
+
+table td,
+table th{
+    vertical-align:middle;
+}
+
+@media(max-width:1100px){
+
+    .conteudo{
+        flex-direction:column;
+    }
+
+    .formulario,
+    .tabela{
+        width:100%;
+    }
+
 }

@@ -18,17 +18,15 @@
 .btn-primary {
     background: #112240;
     color: white;
-    padding: 14px 22px;
-    border-radius: 12px;
+    padding: 12px 18px;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: 500;
-    border: none;
-    cursor: pointer;
     transition: 0.3s;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
+    background: #1d3557;
 }
 
 .pets-grid {

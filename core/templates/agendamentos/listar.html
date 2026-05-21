@@ -1,236 +1,233 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
+{% block title %}
+Agendamentos
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Agendamentos</title>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/agendamentos.css' %}">
+{% endblock %}
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block content %}
 
-<body>
+<!-- CONTAINER -->
 
-    <!-- CONTAINER -->
+<div class="container">
 
-    <div class="container">
+    <h1 class="titulo">Agendamentos</h1>
 
-        <h1 class="titulo">Agendamentos</h1>
+    <div class="conteudo">
 
-        <div class="conteudo">
+        <!-- FORMULÁRIO -->
 
-            <!-- FORMULÁRIO -->
+        <div class="formulario">
 
-            <div class="formulario">
+            <h3>Novo Agendamento</h3>
 
-                <h3>Novo Agendamento</h3>
+            {% if editar %}
 
-                {% if editar %}
+            <form method="POST" action="{% url 'editar_agendamento' agendamento_editar.id %}">
 
-                <form method="POST" action="{% url 'editar_agendamento' agendamento_editar.id %}">
+            {% else %}
 
-                {% else %}
+            <form method="POST" action="{% url 'listar_agendamentos' %}">
 
-                <form method="POST" action="{% url 'listar_agendamentos' %}">
+            {% endif %}
 
-                {% endif %}
+                {% csrf_token %}
 
-                    {% csrf_token %}
+                <!-- CLIENTE -->
 
-                    <!-- CLIENTE -->
+                <label>Cliente</label>
 
-                    <label>Cliente</label>
+                <select name="cliente" required>
 
-                    <select name="cliente" required>
+                    <option value="">
+                        Selecione um cliente
+                    </option>
 
-                        <option value="">
-                            Selecione um cliente
+                    {% for cliente in clientes %}
+
+                        <option
+                            value="{{ cliente.id }}"
+
+                            {% if editar and cliente.id == agendamento_editar.cliente.id %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ cliente }}
                         </option>
 
-                        {% for cliente in clientes %}
+                    {% endfor %}
 
-                            <option
-                                value="{{ cliente.id }}"
+                </select>
 
-                                {% if editar and cliente.id == agendamento_editar.cliente.id %}
-                                    selected
-                                {% endif %}
-                            >
-                                {{ cliente }}
-                            </option>
+                <!-- PET -->
 
-                        {% endfor %}
+                <label>Pet</label>
 
-                    </select>
+                <select name="pet" required>
 
-                    <!-- PET -->
+                    <option value="">
+                        Selecione um pet
+                    </option>
 
-                    <label>Pet</label>
+                    {% for pet in pets %}
 
-                    <select name="pet" required>
+                        <option
+                            value="{{ pet.id }}"
 
-                        <option value="">
-                            Selecione um pet
+                            {% if editar and pet.id == agendamento_editar.pet.id %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ pet }}
                         </option>
 
-                        {% for pet in pets %}
+                    {% endfor %}
 
-                            <option
-                                value="{{ pet.id }}"
+                </select>
 
-                                {% if editar and pet.id == agendamento_editar.pet.id %}
-                                    selected
-                                {% endif %}
-                            >
-                                {{ pet }}
-                            </option>
+                <!-- SERVIÇO -->
 
-                        {% endfor %}
+                <label>Serviço</label>
 
-                    </select>
+                <select name="servico" required>
 
-                    <!-- SERVIÇO -->
+                    <option value="">
+                        Selecione um serviço
+                    </option>
 
-                    <label>Serviço</label>
+                    {% for servico in servicos %}
 
-                    <select name="servico" required>
+                        <option
+                            value="{{ servico.id }}"
 
-                        <option value="">
-                            Selecione um serviço
+                            {% if editar and servico.id == agendamento_editar.servico.id %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ servico }}
                         </option>
 
-                        {% for servico in servicos %}
+                    {% endfor %}
 
-                            <option
-                                value="{{ servico.id }}"
+                </select>
 
-                                {% if editar and servico.id == agendamento_editar.servico.id %}
-                                    selected
-                                {% endif %}
+                <!-- DATA -->
+
+                <label>Data</label>
+
+                <input
+                    type="date"
+                    name="data_agendamento"
+                    value="{{ agendamento_editar.data|date:'Y-m-d' }}"
+                    required
+                >
+
+                <!-- HORÁRIO -->
+
+                <label>Horário</label>
+
+                <input
+                    type="time"
+                    name="horario_agendamento"
+                    value="{{ agendamento_editar.horario|time:'H:i' }}"
+                    required
+                >
+
+                <!-- BOTÃO -->
+
+                <button type="submit" class="botao">
+
+                    {% if editar %}
+                        Atualizar Agendamento
+                    {% else %}
+                        Salvar Agendamento
+                    {% endif %}
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- TABELA -->
+
+        <div class="tabela">
+
+            <h3>Agendamentos Marcados</h3>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Pet</th>
+                        <th>Serviço</th>
+                        <th>Data</th>
+                        <th>Horário</th>
+                        <th>Ações</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for a in agendamentos %}
+
+                    <tr>
+
+                        <td>{{ a.cliente }}</td>
+
+                        <td>{{ a.pet }}</td>
+
+                        <td>{{ a.servico }}</td>
+
+                        <td>{{ a.data }}</td>
+
+                        <td>{{ a.horario }}</td>
+
+                        <td class="acoes">
+
+                            <a
+                                href="{% url 'editar_agendamento' a.id %}"
+                                class="editar"
                             >
-                                {{ servico }}
-                            </option>
+                                Editar
+                            </a>
 
-                        {% endfor %}
+                            <a
+                                href="{% url 'deletar_agendamento' a.id %}"
+                                class="excluir"
+                            >
+                                Excluir
+                            </a>
 
-                    </select>
+                        </td>
 
-                    <!-- DATA -->
+                    </tr>
 
-                    <label>Data</label>
+                    {% empty %}
 
-                    <input
-                        type="date"
-                        name="data_agendamento"
-                        value="{{ agendamento_editar.data|date:'Y-m-d' }}"
-                        required
-                    >
+                    <tr>
+                        <td colspan="6">
+                            Nenhum agendamento encontrado.
+                        </td>
+                    </tr>
 
-                    <!-- HORÁRIO -->
+                    {% endfor %}
 
-                    <label>Horário</label>
+                </tbody>
 
-                    <input
-                        type="time"
-                        name="horario_agendamento"
-                        value="{{ agendamento_editar.horario|time:'H:i' }}"
-                        required
-                    >
-
-                    <!-- BOTÃO -->
-
-                    <button type="submit" class="botao">
-
-                        {% if editar %}
-                            Atualizar Agendamento
-                        {% else %}
-                            Salvar Agendamento
-                        {% endif %}
-
-                    </button>
-
-                </form>
-
-            </div>
-
-            <!-- TABELA -->
-
-            <div class="tabela">
-
-                <h3>Agendamentos Marcados</h3>
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Pet</th>
-                            <th>Serviço</th>
-                            <th>Data</th>
-                            <th>Horário</th>
-                            <th>Ações</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        {% for a in agendamentos %}
-
-                        <tr>
-
-                            <td>{{ a.cliente }}</td>
-
-                            <td>{{ a.pet }}</td>
-
-                            <td>{{ a.servico }}</td>
-
-                            <td>{{ a.data }}</td>
-
-                            <td>{{ a.horario }}</td>
-
-                            <td class="acoes">
-
-                                <a
-                                    href="{% url 'editar_agendamento' a.id %}"
-                                    class="editar"
-                                >
-                                    Editar
-                                </a>
-
-                                <a
-                                    href="{% url 'deletar_agendamento' a.id %}"
-                                    class="excluir"
-                                >
-                                    Excluir
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        {% empty %}
-
-                        <tr>
-                            <td colspan="6">
-                                Nenhum agendamento encontrado.
-                            </td>
-                        </tr>
-
-                        {% endfor %}
-
-                    </tbody>
-
-                </table>
-
-            </div>
+            </table>
 
         </div>
 
     </div>
 
-</body>
+</div>
 
-</html>
+{% endblock %}

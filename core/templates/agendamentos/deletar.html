@@ -1,76 +1,73 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
+{% block title %}
+Deletar Agendamento
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Deletar Agendamento</title>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/agendamentos.css' %}">
+{% endblock %}
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block content %}
 
-<body>
+<div class="pagina-centralizada">
 
-    <div class="pagina-centralizada">
+    <div class="card">
 
-        <div class="card">
+        <h1>Deletar Agendamento</h1>
 
-            <h1>Deletar Agendamento</h1>
+        <p>
+            Tem certeza que deseja deletar o agendamento abaixo?
+        </p>
 
-            <p>
-                Tem certeza que deseja deletar o agendamento abaixo?
-            </p>
+        <br>
 
-            <br>
+        <p>
+            <strong>Cliente:</strong>
+            {{ agendamento.cliente }}
+        </p>
 
-            <p>
-                <strong>Cliente:</strong>
-                {{ agendamento.cliente }}
-            </p>
+        <p>
+            <strong>Pet:</strong>
+            {{ agendamento.pet }}
+        </p>
 
-            <p>
-                <strong>Pet:</strong>
-                {{ agendamento.pet }}
-            </p>
+        <p>
+            <strong>Serviço:</strong>
+            {{ agendamento.servico }}
+        </p>
 
-            <p>
-                <strong>Serviço:</strong>
-                {{ agendamento.servico }}
-            </p>
+        <p>
+            <strong>Data:</strong>
+            {{ agendamento.data }}
+        </p>
 
-            <p>
-                <strong>Data:</strong>
-                {{ agendamento.data }}
-            </p>
+        <p>
+            <strong>Horário:</strong>
+            {{ agendamento.horario }}
+        </p>
 
-            <p>
-                <strong>Horário:</strong>
-                {{ agendamento.horario }}
-            </p>
+        <form method="POST">
 
-            <form method="POST">
+            {% csrf_token %}
 
-                {% csrf_token %}
+            <div class="botoes">
 
-                <div class="botoes">
+                <button type="submit" class="botao">
+                    Confirmar
+                </button>
 
-                    <button type="submit" class="botao">
-                        Confirmar
-                    </button>
+                <a href="{% url 'listar_agendamentos' %}" class="botao-cancelar">
+                    Cancelar
+                </a>
 
-                    <a href="{% url 'listar_agendamentos' %}" class="botao-cancelar">
-                        Cancelar
-                    </a>
+            </div>
 
-                </div>
-
-            </form>
-
-        </div>
+        </form>
 
     </div>
 
-</body>
+</div>
 
-</html>
+{% endblock %}

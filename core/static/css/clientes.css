@@ -42,13 +42,13 @@ table {
 }
 
 thead {
-    background: #f4f7fb;
+    background: #17325c;
 }
 
 th {
     padding: 16px;
     text-align: left;
-    color: #112240;
+    color: white;
 }
 
 td {

@@ -4,14 +4,7 @@ from django.contrib.auth import logout
 from .models import Cliente, Pet, Servico, Agendamento
 from .forms import ClienteForm, PetForm, ServicoForm, AgendamentoForm
 
-<<<<<<< HEAD
 @login_required
-=======
-from .models import Pet, Servico, Agendamento, Cliente
-from .forms import PetForm, ServicoForm, AgendamentoForm
-
-# @login_required
->>>>>>> main
 def dashboard(request):
     return render(request, 'dashboard/dashboard.html')
 
@@ -123,11 +116,7 @@ def deletar_pet(request, id):
         'pet': pet
     })
 
-<<<<<<< HEAD
 @login_required
-=======
-
->>>>>>> main
 def listar_servicos(request):
 
     servicos = Servico.objects.all()
@@ -177,51 +166,10 @@ def deletar_servico(request, id):
         'servico': servico
     })
 
-<<<<<<< HEAD
-@login_required
-=======
-
->>>>>>> main
 def listar_agendamentos(request):
 
-    if request.method == 'POST':
-
-        cliente_id = request.POST.get('cliente')
-        pet_id = request.POST.get('pet')
-        servico_id = request.POST.get('servico')
-
-<<<<<<< HEAD
-@login_required
-def criar_agendamento(request):
-=======
-        data_agendamento = request.POST.get('data_agendamento')
-        horario_agendamento = request.POST.get('horario_agendamento')
-
-        cliente = Cliente.objects.get(id=cliente_id)
-        pet = Pet.objects.get(id=pet_id)
-        servico = Servico.objects.get(id=servico_id)
->>>>>>> main
-
-        Agendamento.objects.create(
-            cliente=cliente,
-            pet=pet,
-            servico=servico,
-            data=data_agendamento,
-            horario=horario_agendamento
-        )
-
-        return redirect('listar_agendamentos')
-
-<<<<<<< HEAD
-    return render(request, 'agendamentos/form.html', {
-        'form': form
-    })
-
-@login_required
-def listar_agendamentos(request):
-=======
->>>>>>> main
     agendamentos = Agendamento.objects.all()
+
     clientes = Cliente.objects.all()
     pets = Pet.objects.all()
     servicos = Servico.objects.all()
@@ -230,10 +178,10 @@ def listar_agendamentos(request):
         'agendamentos': agendamentos,
         'clientes': clientes,
         'pets': pets,
-        'servicos': servicos
+        'servicos': servicos,
     })
 
-@login_required
+
 def criar_agendamento(request):
 
     form = AgendamentoForm(request.POST or None)
@@ -246,25 +194,44 @@ def criar_agendamento(request):
         'form': form
     })
 
-@login_required
+
 def editar_agendamento(request, id):
 
     agendamento = get_object_or_404(Agendamento, id=id)
 
-    form = AgendamentoForm(request.POST or None, instance=agendamento)
+    clientes = Cliente.objects.all()
+    pets = Pet.objects.all()
+    servicos = Servico.objects.all()
 
-    if form.is_valid():
-        form.save()
+    if request.method == 'POST':
+
+        agendamento.cliente_id = request.POST.get('cliente')
+        agendamento.pet_id = request.POST.get('pet')
+        agendamento.servico_id = request.POST.get('servico')
+
+        agendamento.data = request.POST.get('data_agendamento')
+        agendamento.horario = request.POST.get('horario_agendamento')
+
+        agendamento.save()
+
         return redirect('listar_agendamentos')
 
-    return render(request, 'agendamentos/form.html', {
-        'form': form
+    return render(request, 'agendamentos/listar.html', {
+        'editar': True,
+        'agendamento_editar': agendamento,
+        'agendamentos': Agendamento.objects.all(),
+        'clientes': clientes,
+        'pets': pets,
+        'servicos': servicos,
     })
 
-@login_required
+
 def deletar_agendamento(request, id):
 
-    agendamento = get_object_or_404(Agendamento, id=id)
+    agendamento = get_object_or_404(
+        Agendamento,
+        id=id
+    )
 
     if request.method == 'POST':
         agendamento.delete()
@@ -273,4 +240,3 @@ def deletar_agendamento(request, id):
     return render(request, 'agendamentos/deletar.html', {
         'agendamento': agendamento
     })
-

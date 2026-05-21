@@ -1,47 +1,44 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
+{% block title %}
+Editar Agendamento
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Agendamento</title>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/agendamentos.css' %}">
+{% endblock %}
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block content %}
 
-<body>
+<div class="pagina-centralizada">
 
-    <div class="pagina-centralizada">
+    <div class="card">
 
-        <div class="card">
+        <h1>Formulário de Agendamento</h1>
 
-            <h1>Formulário de Agendamento</h1>
+        <form method="POST">
 
-            <form method="POST">
+            {% csrf_token %}
 
-                {% csrf_token %}
+            {{ form.as_p }}
 
-                {{ form.as_p }}
+            <div class="botoes">
 
-                <div class="botoes">
+                <button type="submit" class="botao">
+                    Salvar
+                </button>
 
-                    <button type="submit" class="botao">
-                        Salvar
-                    </button>
+                <a href="{% url 'listar_agendamentos' %}" class="botao-cancelar">
+                    Voltar
+                </a>
 
-                    <a href="{% url 'listar_agendamentos' %}" class="botao-cancelar">
-                        Voltar
-                    </a>
+            </div>
 
-                </div>
-
-            </form>
-
-        </div>
+        </form>
 
     </div>
 
-</body>
+</div>
 
-</html>
+{% endblock %}
