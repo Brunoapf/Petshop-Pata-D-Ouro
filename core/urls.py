@@ -36,8 +36,6 @@ urlpatterns = [
     # AGENDAMENTOS
     path('agendamentos/', views.listar_agendamentos, name='listar_agendamentos'),
 
-    path('agendamentos/criar/', views.criar_agendamento, name='criar_agendamento'),
-
     path('agendamentos/editar/<int:id>/', views.editar_agendamento, name='editar_agendamento'),
 
     path('agendamentos/deletar/<int:id>/', views.deletar_agendamento, name='deletar_agendamento'),

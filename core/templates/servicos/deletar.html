@@ -29,8 +29,13 @@ Deletar Serviço
         <div class="info-servico">
 
             <p>
-                <strong>Serviço:</strong>
+                <strong>Nome:</strong>
                 {{ servico.nome }}
+            </p>
+
+            <p>
+                <strong>Descrição:</strong>
+                {{ servico.descricao }}
             </p>
 
             <p>
@@ -47,12 +52,16 @@ Deletar Serviço
             <div class="botoes">
 
                 <button type="submit" class="botao-excluir">
+
                     <i class="fa-solid fa-trash"></i>
                     Confirmar Exclusão
+
                 </button>
 
                 <a href="{% url 'listar_servicos' %}" class="botao-cancelar">
+
                     Cancelar
+
                 </a>
 
             </div>

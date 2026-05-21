@@ -125,48 +125,106 @@ def listar_servicos(request):
         'servicos': servicos
     })
 
+# SERVIÇOS
+
+@login_required
+def listar_servicos(request):
+
+    servicos = Servico.objects.all()
+
+    return render(request, 'servicos/listar.html', {
+        'servicos': servicos
+    })
+
+
 @login_required
 def criar_servico(request):
 
-    form = ServicoForm(request.POST or None)
+    if request.method == 'POST':
 
-    if form.is_valid():
-        form.save()
-        return redirect('listar_servicos')
+        form = ServicoForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect('listar_servicos')
+
+    else:
+
+        form = ServicoForm()
 
     return render(request, 'servicos/form.html', {
         'form': form
     })
+
 
 @login_required
 def editar_servico(request, id):
 
     servico = get_object_or_404(Servico, id=id)
 
-    form = ServicoForm(request.POST or None, instance=servico)
+    if request.method == 'POST':
 
-    if form.is_valid():
-        form.save()
-        return redirect('listar_servicos')
+        form = ServicoForm(
+            request.POST,
+            instance=servico
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect('listar_servicos')
+
+    else:
+
+        form = ServicoForm(instance=servico)
 
     return render(request, 'servicos/form.html', {
         'form': form
     })
 
+
 @login_required
 def deletar_servico(request, id):
 
-    servico = get_object_or_404(Servico, id=id)
+    servico = get_object_or_404(
+        Servico,
+        id=id
+    )
 
     if request.method == 'POST':
+
         servico.delete()
+
         return redirect('listar_servicos')
 
     return render(request, 'servicos/deletar.html', {
         'servico': servico
     })
 
+@login_required
 def listar_agendamentos(request):
+
+    if request.method == 'POST':
+
+        cliente_id = request.POST.get('cliente')
+        pet_id = request.POST.get('pet')
+        servico_id = request.POST.get('servico')
+
+        data = request.POST.get('data_agendamento')
+        horario = request.POST.get('horario_agendamento')
+
+        Agendamento.objects.create(
+            cliente_id=cliente_id,
+            pet_id=pet_id,
+            servico_id=servico_id,
+            data=data,
+            horario=horario
+        )
+
+        return redirect('listar_agendamentos')
 
     agendamentos = Agendamento.objects.all()
 

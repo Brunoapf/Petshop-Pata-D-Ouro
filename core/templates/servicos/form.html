@@ -30,11 +30,29 @@ Serviço
 
             {% csrf_token %}
 
+            {% if form.errors %}
+
+                <div class="erros-form">
+
+                    {{ form.errors }}
+
+                </div>
+
+            {% endif %}
+
             <div class="form-group">
 
                 <label>Nome do Serviço</label>
 
                 {{ form.nome }}
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Descrição</label>
+
+                {{ form.descricao }}
 
             </div>
 
@@ -49,12 +67,16 @@ Serviço
             <div class="botoes">
 
                 <button type="submit" class="botao">
+
                     <i class="fa-solid fa-floppy-disk"></i>
                     Salvar
+
                 </button>
 
                 <a href="{% url 'listar_servicos' %}" class="botao-cancelar">
+
                     Voltar
+
                 </a>
 
             </div>

@@ -17,15 +17,20 @@ Serviços
     <div class="topo">
 
         <div>
+
             <h1 class="titulo">Serviços</h1>
+
             <p class="subtitulo">
-                Gerencie os serviços oferecidos pelo petshop
+                Gerencie os serviços do petshop
             </p>
+
         </div>
 
         <a href="{% url 'criar_servico' %}" class="btn-novo">
+
             <i class="fa-solid fa-plus"></i>
             Novo Serviço
+
         </a>
 
     </div>
@@ -37,9 +42,12 @@ Serviços
             <thead>
 
                 <tr>
-                    <th>Serviço</th>
+
+                    <th>Nome</th>
+                    <th>Descrição</th>
                     <th>Preço</th>
                     <th>Ações</th>
+
                 </tr>
 
             </thead>
@@ -52,6 +60,8 @@ Serviços
 
                     <td>{{ servico.nome }}</td>
 
+                    <td>{{ servico.descricao }}</td>
+
                     <td>
                         R$ {{ servico.preco }}
                     </td>
@@ -62,16 +72,20 @@ Serviços
                             href="{% url 'editar_servico' servico.id %}"
                             class="btn-editar"
                         >
+
                             <i class="fa-solid fa-pen"></i>
                             Editar
+
                         </a>
 
                         <a
                             href="{% url 'deletar_servico' servico.id %}"
                             class="btn-excluir"
                         >
+
                             <i class="fa-solid fa-trash"></i>
                             Excluir
+
                         </a>
 
                     </td>
@@ -82,8 +96,10 @@ Serviços
 
                 <tr>
 
-                    <td colspan="3" class="vazio">
+                    <td colspan="4" class="vazio">
+
                         Nenhum serviço cadastrado.
+
                     </td>
 
                 </tr>
